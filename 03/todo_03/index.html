@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Vue3 TODO App</title>
+    <style>
+      body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      #currentApp {
+        padding: 20px;
+        background-color: #fafafa;
+      }
+      #todoApp {
+        padding: 20px;
+        background-color: #ffffee;
+      }
+      #todoApp ul {
+        margin: 0;
+        padding: 0;
+      }
+      #todoApp li {
+        padding: 10px;
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="currentApp">
+      <p>既存アプリの部分</p>
+      <button class="fetchBtn">データの取得</button>
+      <button class="saveBtn">データの保存</button>
+    </div>
+    <div id="todoApp">
+      <p>Vue.jsの部分</p>
+      <ul>
+        <li v-for="task in tasks" v-bind:key="task.id">
+          <input type="checkbox" v-on:change="deleteTask(task.id)" />
+          {{task.title}}
+        </li>
+      </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.5/dist/vue.global.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
