@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Vue3 TODO App</title>
+    <style>
+      #todoApp ul {
+        margin: 0;
+        padding: 0;
+        max-width: 500px;
+      }
+      #todoApp li {
+        padding: 10px;
+        list-style: none;
+        position: relative;
+      }
+      #todoApp input[type='text'] {
+        padding: 5px;
+        width: 250px;
+      }
+      #todoApp button {
+        width: 100px;
+      }
+      #todoApp li:first-child label {
+        color: #0055aa;
+      }
+      #todoApp li button {
+        position: absolute;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="todoApp">
+      <ul>
+        <li>
+          <input v-model="titleFilter" type="text" placeholder="タスク名で絞り込む" />
+          <label
+            ><input type="radio" :value="DONE_FILTER.UNDONE" v-model="doneFilter" />未完了</label
+          >
+          <label><input type="radio" :value="DONE_FILTER.DONE" v-model="doneFilter" />完了</label>
+          <label>
+            <input type="radio" :value="DONE_FILTER.ALL" v-model="doneFilter" />すべて
+          </label>
+        </li>
+
+        <li v-for="task in filteredTasks" :key="task.id">
+          <input type="checkbox" v-model="task.done" />
+          {{task.title}}
+          <button @click="deleteTask(task.id)">削除</button>
+        </li>
+      </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.5/dist/vue.global.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
