@@ -21,7 +21,8 @@ const Todo = {
       return Vue.readonly(DONE_FILTER);
     },
     filteredTasks() {
-      if (this.titleFilter === '' && this.doneFilter === DONE_FILTER.ALL) {
+      const noFilter = this.titleFilter === '' && this.doneFilter === DONE_FILTER.ALL;
+      if (noFilter) {
         return this.tasks;
       }
       return this.tasks.filter(task => {
