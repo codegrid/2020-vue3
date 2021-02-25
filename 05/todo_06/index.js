@@ -26,7 +26,8 @@ const Todo = {
       }
       return this.tasks.filter(task => {
         const titleMatched = this.titleFilterExp.test(task.title);
-        const doneMatched = [DONE_FILTER.ALL, task.done].some(v => v === this.doneFilter);
+        // const doneMatched = [DONE_FILTER.ALL, task.done].some(v => v === this.doneFilter);
+        const doneMatched = this.doneFilter === DONE_FILTER.ALL || this.doneFilter === task.done;
         return titleMatched && doneMatched;
       });
     },
