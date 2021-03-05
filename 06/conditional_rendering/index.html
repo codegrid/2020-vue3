@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Vue3 条件付きレンダリング</title>
+    <style>
+      label {
+        padding-right: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <label><input type="checkbox" v-model="visibleMessage" />メッセージを表示する</label>
+        <p v-show="visibleMessage">こんにちは Vue.js</p>
+      </div>
+
+      <hr />
+      血液型
+      <label><input type="radio" v-model="bloodType" value="A" />A</label>
+      <label><input type="radio" v-model="bloodType" value="B" />B</label>
+      <label><input type="radio" v-model="bloodType" value="AB" />AB</label>
+      <label><input type="radio" v-model="bloodType" value="O" />O</label>
+
+      <div v-if="bloodType === 'A'">几帳面</div>
+      <div v-else-if="bloodType === 'B'">マイペース</div>
+      <div v-else-if="bloodType === 'AB'">合理的</div>
+      <div v-else-if="bloodType === 'O'">おおらか</div>
+      <div v-else>不明な血液型です</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.5/dist/vue.global.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
