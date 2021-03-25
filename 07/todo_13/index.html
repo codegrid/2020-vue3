@@ -81,7 +81,7 @@
           <template v-else>
             <input type="checkbox" v-model="task.done" />
             {{task.title}}
-            <button @click="showEditingTaskFields(task)" ref="editBtn">編集</button>
+            <button @click="showEditingTaskFields(task)" :ref="getEditBtnId(task.id)">編集</button>
             <button @click="deleteTask(task.id)">削除</button>
           </template>
         </li>

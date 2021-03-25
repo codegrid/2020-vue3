@@ -54,6 +54,9 @@ const Todo = {
     isEditingTask(task) {
       return this.editingTaskFieldsVisible && this.editingTask.id === task.id;
     },
+    getEditBtnId(taskId) {
+      return `taskEditBtn${taskId}`;
+    },
     addTask() {
       if (this.newTaskTitle === '') return;
       const newTask = makeNewTask(this.newTaskTitle, this.tasks);
@@ -84,8 +87,9 @@ const Todo = {
     },
     hideEditingTaskFields() {
       this.editingTaskFieldsVisible = false;
+      const editBtnId = this.getEditBtnId(this.editingTask.id);
       this.$nextTick(() => {
-        this.$refs.editBtn.focus();
+        this.$refs[editBtnId].focus();
       });
     },
     editTask() {
