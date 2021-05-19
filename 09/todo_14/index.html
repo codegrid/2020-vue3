@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Vue3 TODO App</title>
+    <style>
+      #todoApp ul {
+        margin: 0;
+        padding: 0;
+        max-width: 500px;
+      }
+      #todoApp li {
+        padding: 10px;
+        list-style: none;
+        position: relative;
+      }
+      #todoApp input[type='text'] {
+        padding: 5px;
+        width: 250px;
+      }
+      #todoApp input[type='text']:not(:first-child) {
+        padding: 5px;
+        width: 200px;
+      }
+
+      #todoApp button {
+        width: 100px;
+      }
+      #todoApp li:first-child label {
+        color: #0055aa;
+      }
+      #todoApp li:not(:first-child):not(:last-child) > button:nth-child(2) {
+        position: absolute;
+        right: 100px;
+      }
+      #todoApp li:not(:first-child):not(:last-child) > button:last-child {
+        position: absolute;
+        right: 0;
+      }
+      button:focus {
+        border-width: 2px;
+        border-radius: 4px;
+        border-color: #0055aa;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="todoApp">
+      <ul>
+        <li>
+          <input
+            v-model="titleFilter"
+            ref="titleFilter"
+            type="text"
+            placeholder="タスク名で絞り込む"
+          />
+          <label
+            ><input type="radio" :value="DONE_FILTER.UNDONE" v-model="doneFilter" />未完了</label
+          >
+          <label><input type="radio" :value="DONE_FILTER.DONE" v-model="doneFilter" />完了</label>
+          <label>
+            <input type="radio" :value="DONE_FILTER.ALL" v-model="doneFilter" />すべて
+          </label>
+        </li>
+
+        <li v-for="task in filteredTasks" :key="task.id">
+          <form
+            v-if="isEditingTask(task)"
+            @submit.prevent="editTask"
+            @reset.prevent="hideEditingTaskFields"
+          >
+            <input
+              v-model="editingTaskTitle"
+              type="text"
+              @keyup.esc="hideEditingTaskFields"
+              ref="editingTaskTitle"
+            />
+            <button type="submit">確定</button>
+            <button type="reset">キャンセル</button>
+          </form>
+          <template v-else>
+            <input type="checkbox" v-model="task.done" @change="changeDone(task)" />
+            {{task.title}}
+            <button @click="showEditingTaskFields(task)" :ref="getEditBtnId(task.id)">編集</button>
+            <button @click="deleteTask(task.id)">削除</button>
+          </template>
+        </li>
+        <li>
+          <form
+            v-show="newTaskFieldsVisible"
+            @submit.prevent="addTask"
+            @reset.prevent="resetNewTaskFields"
+          >
+            <input
+              v-model="newTaskTitle"
+              ref="newTaskTitle"
+              @keyup.esc="resetNewTaskFields"
+              type="text"
+              placeholder="新しいタスク"
+            />
+            <button type="submit">追加</button>
+            <button type="reset">キャンセル</button>
+          </form>
+          <button @click="showNewTaskFields" v-show="!newTaskFieldsVisible" ref="taskAddBtn">
+            タスク追加
+          </button>
+        </li>
+      </ul>
+      <div>
+        <a @click="initializeTasks" href="#">デモデータを初期状態に戻す</a>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.5/dist/vue.global.js"></script>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
