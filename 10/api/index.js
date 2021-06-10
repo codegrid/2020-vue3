@@ -1,17 +1,12 @@
-/**
- * デモ用：データ取得・保存処理
- */
-// const tasks = [
-//   { id: 1, title: '野菜を買う', done: false },
-//   { id: 2, title: '魚を買う', done: false },
-//   { id: 3, title: 'JavaScriptの勉強をする', done: false },
-//   { id: 4, title: '原稿を書く', done: false },
-// ];
-
 const DONE_FILTER = {
   DONE: true,
   UNDONE: false,
   ALL: null,
+};
+
+const getSessionKey = key => {
+  const arr = location.href.split('/');
+  return `${arr[arr.length - 2]}_${key}`;
 };
 
 const makeNewTask = (title, tasks) => {
@@ -25,12 +20,14 @@ const makeNewTask = (title, tasks) => {
 };
 
 const saveTasks = params => {
-  sessionStorage.setItem('tasks', JSON.stringify(params.tasks));
+  const key = getSessionKey('tasks');
+  sessionStorage.setItem(key, JSON.stringify(params.tasks));
   return Promise.resolve();
 };
 
 const getTasks = () => {
-  const tasksString = sessionStorage.getItem('tasks');
+  const key = getSessionKey('tasks');
+  const tasksString = sessionStorage.getItem(key);
   if (tasksString === 'undefined') {
     return;
   }
@@ -80,7 +77,8 @@ const deleteTask = params => {
 };
 
 const initializeTasks = tasks => {
-  sessionStorage.setItem('tasks', JSON.stringify(tasks));
+  const key = getSessionKey('tasks');
+  sessionStorage.setItem(key, JSON.stringify(tasks));
 };
 
 export const makeApiMock = (tasks, maxCount) => {

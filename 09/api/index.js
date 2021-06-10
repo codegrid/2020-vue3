@@ -4,6 +4,11 @@ const DONE_FILTER = {
   ALL: null,
 };
 
+const getSessionKey = key => {
+  const arr = location.href.split('/');
+  return `${arr[arr.length - 2]}_${key}`;
+};
+
 const makeNewTask = (title, tasks) => {
   const ids = tasks.map(task => task.id);
   const id = Math.max(...ids) + 1;
@@ -15,12 +20,14 @@ const makeNewTask = (title, tasks) => {
 };
 
 const saveTasks = params => {
-  sessionStorage.setItem('tasks', JSON.stringify(params.tasks));
+  const key = getSessionKey('tasks');
+  sessionStorage.setItem(key, JSON.stringify(params.tasks));
   return Promise.resolve();
 };
 
 const getTasks = () => {
-  const tasksString = sessionStorage.getItem('tasks');
+  const key = getSessionKey('tasks');
+  const tasksString = sessionStorage.getItem(key);
   if (tasksString === 'undefined') {
     return;
   }
@@ -70,7 +77,8 @@ const deleteTask = params => {
 };
 
 const initializeTasks = tasks => {
-  sessionStorage.setItem('tasks', JSON.stringify(tasks));
+  const key = getSessionKey('tasks');
+  sessionStorage.setItem(key, JSON.stringify(tasks));
 };
 
 export const makeApiMock = (tasks, maxCount) => {
