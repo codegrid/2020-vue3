@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>image resize counter</title>
+    <style>
+      body {
+        padding: 20px;
+        text-align: center;
+        font-size: 30px;
+        font-family: 'Arial';
+      }
+      button {
+        padding: 0 20px;
+        height: 50px;
+        box-sizing: border-box;
+        font-size: 20px;
+      }
+      input[type='number'] {
+        padding: 0;
+        box-sizing: border-box;
+        width: 80px;
+        height: 50px;
+        font-size: 20px;
+        font-family: 'Arial';
+        text-align: right;
+      }
+
+      #app > div {
+        margin: 0 5px 5px;
+        display: inline-block;
+        min-width: 150px;
+      }
+      .alertMessage {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        background-color: #ff0000;
+        color: #ffffff;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.5/dist/vue.global.js"></script>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>
