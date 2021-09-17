@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>provide / inject</title>
+    <style>
+      body {
+        padding: 20px;
+        text-align: center;
+        font-size: 30px;
+        font-family: 'Arial';
+      }
+
+      .imageResizerTools > div {
+        margin: 0 5px 5px;
+        display: inline-block;
+        min-width: 150px;
+      }
+      .imageResizerTools button {
+        padding: 0 20px;
+        height: 50px;
+        box-sizing: border-box;
+        font-size: 20px;
+      }
+      .imageResizerTools input[type='number'] {
+        padding: 0;
+        box-sizing: border-box;
+        width: 80px;
+        height: 50px;
+        font-size: 20px;
+        font-family: 'Arial';
+        text-align: right;
+      }
+
+      .imageResizerPreview button {
+        margin: 10px auto;
+        display: block;
+        width: 200px;
+      }
+
+      .imageSelector {
+        padding: 20px;
+        margin: 25px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: calc(100% - 50px);
+        height: calc(100% - 50px);
+        background-color: #eee;
+        border: solid 10px #aaa;
+        box-sizing: border-box;
+      }
+      .imageSelector > button {
+        display: inline-block;
+        margin: 10px;
+        width: 100px;
+        height: 75px;
+        border: none;
+      }
+      .imageSelector > button {
+        cursor: pointer;
+      }
+      .imageSelector > button > img {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.5/dist/vue.global.js"></script>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>
