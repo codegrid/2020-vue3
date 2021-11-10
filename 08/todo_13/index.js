@@ -19,14 +19,11 @@ const Todo = {
       DONE_FILTER: Vue.readonly(DONE_FILTER),
       titleFilter: '',
       doneFilter: DONE_FILTER.UNDONE,
-
       newTaskFieldsVisible: false,
       newTaskTitle: '',
-
       editingTaskFieldsVisible: false,
       editingTaskTitle: '',
       editingTask: '',
-
       tasks: [
         { id: 1, title: '野菜を買う', done: false },
         { id: 2, title: '魚を買う', done: false },
