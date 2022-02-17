@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>composition api sample</title>
+    <style>
+      .appWrapper {
+        margin: 100px 0 0 100px;
+        padding: 20px;
+        width: 300px;
+        height: 100px;
+        background-color: #aaa;
+        position: relative;
+      }
+      .modalDialog {
+        position: absolute;
+        padding: 10px;
+        top: 20px;
+        left: 20px;
+        width: calc(100vw - 40px);
+        height: calc(100vh - 40px);
+        background-color: #aaccff;
+        border-radius: 20px;
+        border: solid 10px #0077ff;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.5/dist/vue.global.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@3.2.30/dist/vue.global.js"></script> -->
+    <!-- <script src="https://unpkg.com/vue@3"></script> -->
+
+    <script src="index.js"></script>
+  </body>
+</html>
